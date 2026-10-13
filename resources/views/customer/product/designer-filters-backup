@@ -1,0 +1,296 @@
+  <div class="col-12 col-sm-12 col-md-12 col-lg-3 sidebar filterbar">
+    <div class="closeFilter d-block d-lg-none"><i class="icon icon an an-times-r"></i></div>
+    <div class="sidebar_tags">
+      <!--Categories-->
+      @if (!$lastCategories->isEmpty())
+        <div class="sidebar_widget filterBox filter-widget size-swacthes brand-filter">
+          <div class="widget-title active">
+            <h2 class="mb-0">Categories</h2>
+          </div>
+          <div class="filterDD" style="display:none">
+            <ul class="clearfix d-inline text-nowrap">
+              @foreach ($lastCategories as $category)
+                <li>
+                  <input type="checkbox" class="filter-selector categories" value="{{ $category->id }}"
+                    id="categories{{ $category->id }}" @checked(in_array($category->id, empty(request('categories')) ? [] : request('categories')))>
+                  <label for="categories{{ $category->id }}"><span></span>{{ $category->category_name }}</label>
+                </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      @endif
+      <!--Categories-->
+      <!--Price Filter-->
+      <div class="sidebar_widget filterBox filter-widget">
+        <div class="widget-title active">
+          <h2 class="mb-0">Price</h2>
+        </div>
+        <form action="#" method="post" class="price-filter filterDD" style="display:none">
+          <div id="slider-range" class="mt-2"></div>
+          <div class="row">
+            <div class="col-7">
+              <p class="no-margin"><input id="amount" class="w-100 pricing" readonly type="text"></p>
+            </div>
+            {{-- <div class="col-5 text-right margin-25px-top">
+              <button type="button" class="btn btn--small rounded filter-selector">filter</button>
+            </div> --}}
+          </div>
+        </form>
+      </div>
+      {{-- <div class="sidebar_widget filterBox filter-widget">
+        <div class="widget-title active">
+          <h2 class="mb-0">Price</h2>
+        </div>
+        <form action="#" method="post" class="price-filter filterDD" style="display:none">
+          <div id="slider-range" class="mt-2"></div>
+          <div class="row">
+            <div class="col-12">
+              <span class="min-price-text">₹ {{ $minPrice }}</span>
+              <span class="max-price-text float-end">₹ {{ $maxPrice }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="input-group">
+                <input class="pricing form-control" type="text">
+                <input class="pricing form-control" type="text">
+              </div>
+            </div>
+            <div class="col-5 text-right margin-25px-top">
+              <button type="button" class="btn btn--small rounded filter-selector">filter</button>
+            </div>
+          </div>
+        </form>
+      </div> --}}
+      <!--End Price Filter-->
+      <!--Color-->
+
+      <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes brand-filter',
+          'd-none' => empty($colors),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Colors</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($colors as $key => $value)
+              <li>
+                <input type="checkbox" class="filter-selector colors" value="{{ $value->id }}"
+                  id="color{{ $value->id }}" @checked(in_array($value->id, empty(request('colors')) ? [] : request('colors')))>
+                <label for="color{{ $value->id }}"><span></span>
+                  {{-- <div style="background:{{ $value->type_color_code }}"></div> --}}{{ $value->type_value }}
+                </label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
+      <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes brand-filter',
+          'd-none' => empty($sizes),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Size</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($sizes as $key => $value)
+              <li>
+                <input type="checkbox" class="filter-selector sizes" value="{{ $value->id }}"
+                  id="size{{ $value->id }}" @checked(in_array($value->id, empty(request('sizes')) ? [] : request('sizes')))>
+                <label for="size{{ $value->id }}"><span></span>{{ $value->type_value }}</label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+      <!--End Brand-->
+
+      <!--Occassions-->
+      <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes availability',
+          'd-none' => empty($occasions),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Occasion</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($occasions as $dropdown)
+              <li>
+                <input type="checkbox" class="filter-selector occasion" value="{{ $dropdown->dropdown_value }}"
+                  id="byOccasion{{ $dropdown->dropdown_value }}" @checked(in_array($dropdown->dropdown_value, empty(request('occasion')) ? [] : request('occasion')))>
+                <label for="byOccasion{{ $dropdown->dropdown_value }}">
+                  <span></span>
+                  {{ $dropdown->dropdown_value }}
+                </label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
+      <!--End Occassions-->
+      <!--Availability-->
+      <!-- <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes availability',
+          'd-none' => empty($availabilities),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Availability</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($availabilities as $dropdown)
+<li>
+                <input type="checkbox" class="filter-selector availabilities" value="{{ $dropdown->dropdown_value }}"
+                  id="byAvailability{{ $dropdown->dropdown_value }}" @checked(in_array($dropdown->dropdown_value, empty(request('availability')) ? [] : request('availability')))>
+                <label for="byAvailability{{ $dropdown->dropdown_value }}">
+                  <span></span>
+                  {{ $dropdown->dropdown_value }}
+                </label>
+              </li>
+@endforeach
+          </ul>
+        </div>
+      </div>-->
+      <!--End Availability-->
+      <!--Availability-->
+      {{-- <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes availability',
+          'd-none' => empty($availabilities),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Availability</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($availabilities as $dropdown)
+              <li>
+                <input type="checkbox" class="filter-selector availabilities" value="{{ $dropdown->dropdown_value }}"
+                  id="byAvailability{{ $dropdown->dropdown_value }}" @checked(in_array($dropdown->dropdown_value, empty(request('availability')) ? [] : request('availability')))>
+                <label for="byAvailability{{ $dropdown->dropdown_value }}">
+                  <span></span>
+                  {{ $dropdown->dropdown_value }}
+                </label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div> --}}
+      <!--End Availability-->
+      <!--Gender-->
+      <div @class([
+          'sidebar_widget filterBox filter-widget size-swacthes availability',
+          'd-none' => empty($genders),
+      ])>
+        <div class="widget-title active">
+          <h2 class="mb-0">Gender</h2>
+        </div>
+        <div class="filterDD" style="display:none">
+          <ul class="clearfix">
+            @foreach ($genders as $gender)
+              @if (trim($gender) !== '')
+                <li>
+                  <input type="checkbox" class="filter-selector genders" value="{{ $gender }}"
+                    id="byGender{{ $gender }}" @checked(in_array($gender, empty(request('gender')) ? [] : request('gender')))>
+                  <label for="byGender{{ $gender }}">
+                    <span></span>
+                    {{ $gender }}
+                  </label>
+                </li>
+              @endif
+            @endforeach
+          </ul>
+        </div>
+      </div>
+      @isset($brands)
+        <div @class([
+            'sidebar_widget filterBox filter-widget size-swacthes brand-filter',
+            'd-none' => empty($brands),
+        ])>
+          <div class="widget-title active">
+            <h2 class="mb-0">Brands</h2>
+          </div>
+          <div class="filterDD" style="display:none">
+            <ul class="clearfix" style=" column-count: 1 !important;">
+              @foreach ($brands as $brand)
+                <li><input type="checkbox" class="filter-selector brands" value="{{ $brand->id }}"
+                    id="brands{{ $brand->id }}"><label
+                    for="brands{{ $brand->id }}"><span></span>{{ $brand->brand_name }}</label></li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      @endisset
+      <!--End Gender-->
+      <!--Material-->
+      {{-- <div class="sidebar_widget filterBox filter-widget size-swacthes availability">
+        <div class="widget-title">
+          <h2 class="mb-0">Material</h2>
+        </div>
+        <div class="filterDD">
+          <ul class="clearfix">
+            @foreach ($materials as $dropdown)
+              <li>
+                <input type="checkbox" class="filter-selector material" value="{{ $dropdown->dropdown_value }}"
+                  id="byMaterial{{ $dropdown->dropdown_value }}" @checked(in_array($dropdown->dropdown_value, empty(request('material')) ? [] : request('material')))>
+                <label for="byMaterial{{ $dropdown->dropdown_value }}">
+                  <span></span>
+                  {{ $dropdown->dropdown_value }}
+                </label>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div> --}}
+      <!--End Material-->
+      <!--Product Tags-->
+      {{-- <div class="sidebar_widget filterBox filter-widget product-tag">
+        <div class="widget-title">
+          <h2 class="mb-0">Product Tags</h2>
+        </div>
+        <div class="widget-content filterDD">
+          <ul class="clearfix product-tags">
+            <li><a href="#" title="Show products matching tag $100 - $400">$100 - $400</a></li>
+            <li><a href="#" title="Show products matching tag $400 - $600">$400 - $600</a></li>
+            <li><a href="#" title="Show products matching tag $600 - $800">$600 - $800</a></li>
+            <li><a href="#" title="Show products matching tag Above $800">Above $800</a></li>
+            <li><a href="#" title="Show products matching tag Allen Vela">Allen Vela</a></li>
+            <li><a href="#" title="Show products matching tag Adidas">Adidas</a></li>
+            <li><a href="#" title="Show products matching tag Black">Black</a></li>
+            <li><a href="#" title="Show products matching tag Blue">Blue</a></li>
+          </ul>
+        </div>
+      </div> --}}
+      <!--End Product Tags-->
+      <!--Popular Products-->
+      {{-- <div class="sidebar_widget sidePro">
+        <div class="widget-title">
+          <h2>Popular Products</h2>
+        </div>
+        <div class="widget-content">
+          <div class="sideProSlider grid-products prd-grid">
+            @foreach ($products as $product)
+              <div class="item">
+                <x-customer.products.product-card :product="$product" :showWishlist="false" />
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div> --}}
+      <!--End Popular Products-->
+      <!--Banner-->
+      {{-- @isset($category)
+        <div class="sidebar_widget static-banner">
+          <a href="javascript:;"><img
+              src="{{ isset($category->banner) ? asset('uploads/category') . '/' . $category->banner : asset('allUsers/customer/images/megamenu/megamenu-banner3.jpg') }}"
+              alt="{{ $category->category_name }}"></a>
+        </div>
+      @endisset --}}
+      <!--End Banner-->
+    </div>
+  </div>

@@ -1,0 +1,484 @@
+@extends('customer.partials.header')
+@section('customerContent')
+@section('title', '')
+@section('description', '')
+@section('keywords', '')
+<!--Body Container-->
+{{-- style=" display: inline-block; width: 100%;" --}}
+<div id="page-content">
+
+    <section class="section banner_sec p-0">
+        <div class="container mobile-hide">
+            <div class="row">
+                <div class="banner_wrap col-sm-12 p-0">
+
+                    <a
+                        @isset($mainBanner->slider_link) href="{{ $mainBanner->slider_link }}" target="_blank" @endisset>
+
+                        <img @empty($mainBanner) src="{{ asset('allUsers/frontend/images/banner-discover.jpg') }}"
+                        alt="banner" @endempty
+                            @isset($mainBanner) src="{{ asset('/uploads/sliders') }}/{{ $mainBanner->slider_image }}"
+                            alt="{{ $mainBanner->slider_title }}" @endisset
+                            class="border_round w-100" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid desktop-hide">
+            <div class="row">
+                <div class=" col-sm-12 p-0">
+ <a
+                        @isset($mainBanner->slider_link) href="{{ $mainBanner->slider_link }}" target="_blank" @endisset>
+
+                        <img @empty($mainBanner) src="{{ asset('allUsers/frontend/images/banner-discover.jpg') }}"
+                        alt="banner" @endempty
+                            @isset($mainBanner) src="{{ asset('/uploads/sliders') }}/{{ $mainBanner->second_slider_image }}"
+                            alt="{{ $mainBanner->slider_title }}" @endisset
+                            class="border_round w-100" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Top Picks On Fashion Product Slider-->
+    <section class="section product-slider pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="section-header text-uppercase col-12">
+                        <h2>Shop By Ages </h2>
+                    </div>
+
+                    <div class="productSlider_ages grid-products shop_agesTab">
+                        @forelse($shopByAge as $item)
+                        <div class="item">
+                                <div class="product-image">
+                                   <a href="{{$item->url}}"><span>{{$item->title}}</span></a> 
+                                </div>
+                            </div>
+                        @empty
+
+                        <div class="item">
+                            <div class="product-image">
+                                <span>Premature</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>1-3 Yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>3-5 Yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>5-7 Yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>7-10 yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>10-12 Yrs</span>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="product-image">
+                                <span>12-14 Yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>14-16 Yrs</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-image">
+                                <span>16+ Yrs</span>
+                            </div>
+                        </div>
+                        @endforelse
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Top Picks On Fashion Product Slider-->
+
+
+    <!--Top Picks On Fashion Product Slider-->
+    <section class="section product-slider pb-0 pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="section-header text-uppercase col-12">
+                    <h2>Shop By Categories</h2>
+                </div>
+            </div>
+            <div class="productSlider01 grid-products">
+                @forelse($shopByCategoriesOne as $slider)
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="{{ $slider->slider_link }}" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                            </a>
+                        </div>
+
+                    </div>
+                @empty
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                @endforelse
+
+
+
+
+
+            </div>
+
+            <div class="productSlider001 grid-products mobile-hide">
+                @forelse($shopByCategoriesTwo as $slider)
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="{{ $slider->slider_link }}" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                            </a>
+                        </div>
+
+                    </div>
+                @empty
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                @endforelse
+
+            </div>
+
+
+
+        </div>
+    </section>
+    <!--End Top Picks On Fashion Product Slider-->
+
+
+    <!--Top Picks On Fashion Product Slider-->
+    <section class="section product-slider pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="section-header text-uppercase col-12">
+                    <h2>Discover Brands </h2>
+                </div>
+            </div>
+            <div class="productSlider01 grid-products">
+                @forelse($discoverBrands as $slider)
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="{{ $slider->slider_link }}" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                    src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                            </a>
+                        </div>
+
+                    </div>
+                @empty
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img11.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img10.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img9.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img8.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="product-image">
+                            <a href="#" class="product-img">
+                                <img class="primary blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                                <img class="hover blur-up lazyload"
+                                    data-src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}"
+                                    src="{{ asset('allUsers/frontend/images/exclusive-img7.png') }}" />
+                            </a>
+                        </div>
+                    </div>
+                @endforelse
+
+            </div>
+        </div>
+    </section>
+    <!--End Top Picks On Fashion Product Slider-->
+
+
+    <!--Top Picks On Fashion Product Slider-->
+    <section class="section product-slider1 pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="section-header text-uppercase col-12">
+                    <h2>Best Seller </h2>
+                </div>
+            </div>
+            <div class="row grid-products">
+
+                @forelse($bestSeller as $slider)
+                    <div class="col-sm-3 col-6">
+                        <div class="item">
+                            <div class="product-image">
+                                <a href="{{ $slider->slider_link }}" class="product-img">
+                                    <img class="primary blur-up lazyload"
+                                        data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                        src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                                    <img class="hover blur-up lazyload"
+                                        data-src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}"
+                                        src="{{ asset('/uploads/sliders') }}/{{ $slider->slider_image }}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-sm-3 col-6">
+                        <div class="item">
+                            <div class="product-image">
+                                <a href="#" class="product-img">
+                                    <img class="primary blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img1.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img1.png') }}" />
+                                    <img class="hover blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img1.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img1.png') }}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-6">
+                        <div class="item">
+                            <div class="product-image">
+                                <a href="#" class="product-img">
+                                    <img class="primary blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img2.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img2.png') }}" />
+                                    <img class="hover blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img2.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img2.png') }}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6">
+                        <div class="item">
+                            <div class="product-image">
+                                <a href="#" class="product-img">
+                                    <img class="primary blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img3.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img3.png') }}" />
+                                    <img class="hover blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img3.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img3.png') }}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-6">
+                        <div class="item">
+                            <div class="product-image">
+                                <a href="#" class="product-img">
+                                    <img class="primary blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img1.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img1.png') }}" />
+                                    <img class="hover blur-up lazyload"
+                                        data-src="{{ asset('allUsers/frontend/images/shop-img1.png') }}"
+                                        src="{{ asset('allUsers/frontend/images/shop-img1.png') }}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
+
+
+
+
+            </div>
+        </div>
+</div>
+<!--End Body Container-->
+<input type="hidden" class="new-in-designer" value="{{ Request::segment(3) }}" />
+<script type="module" src="{{ asset('allUsers/customer/designer.js') }}"></script>
+@endsection

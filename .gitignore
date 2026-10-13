@@ -1,0 +1,38 @@
+# Secrets - kabhi commit mat karo
+.env
+.env_live
+.env.*
+!.env.example
+
+*firebase-adminsdk*.json
+
+# Dependencies (composer install / npm install se dobara ban jaate hain)
+/vendor
+/node_modules
+
+# Zip backups aur junk
+*.zip
+/__MACOSX
+error_log
+*.log
+
+# Laravel runtime
+/storage/*.key
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*.php
+.phpunit.result.cache
+
+# User uploads
+/uploads
+/public/uploads
+/public/hot
+/public/storage
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode
